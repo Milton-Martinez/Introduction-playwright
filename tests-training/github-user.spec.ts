@@ -13,9 +13,23 @@ test.describe('Github users search homepage', () => {
         await page.screenshot({ path: 'debug.png' });
     })
 
-    test('Assess repos change after a search', async () => {
-        githubUser.repoChangedAfterSearch();
-
+    test('Assess repos change after a search', async ({ page }) => {
+        await githubUser.fillSearchBar('test');
+        await githubUser.clickSearchButton();
+        await page.waitForTimeout( 1000 );
+        await githubUser.repoChangedAfterSearch();
+    });
+    test.only('Assess following change after a search', async ({ page }) => {
+        await githubUser.fillSearchBar('test');
+        await githubUser.clickSearchButton();
+        await page.waitForTimeout( 1000 );
+        await githubUser.followingChangedAfterSearch();
+    });
+    test('Assess user change after a search', async ({ page }) => {
+        await githubUser.fillSearchBar('test');
+        await githubUser.clickSearchButton();
+        await page.waitForTimeout( 1000 );
+        await githubUser.userChangedAfterSearch();
     });
 
 });
