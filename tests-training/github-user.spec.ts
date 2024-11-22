@@ -19,7 +19,7 @@ test.describe('Github users search homepage', () => {
         await page.waitForTimeout( 1000 );
         await githubUser.repoChangedAfterSearch();
     });
-    test.only('Assess following change after a search', async ({ page }) => {
+    test('Assess following change after a search', async ({ page }) => {
         await githubUser.fillSearchBar('test');
         await githubUser.clickSearchButton();
         await page.waitForTimeout( 1000 );
